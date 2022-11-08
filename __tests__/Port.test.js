@@ -29,7 +29,7 @@ describe('Port', () => {
             port.addShip(queenMary);
             port.removeShip(titanic);
             
-            expect(port.ships).not.toContain([titanic]);
+            expect(port.ships).not.toContain({titanic});
         });
     });
 });
