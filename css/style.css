@@ -1,13 +1,13 @@
 html, body {
   height: 100%;
-};
+}
 
 body {
   background-color: #000;
   display: flex;
   justify-content: center;
   align-items: center;
-};
+}
 
 #viewport {
   width: 640px;
@@ -15,5 +15,5 @@ body {
   position: relative;
   overflow-x: auto;
   background-image: url('../images/water0.png');
-};
+}
 
