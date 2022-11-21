@@ -1,7 +1,6 @@
 (function exportController() {
-    function Controller(ship) {
+    function Controller (ship) {
         this.ship = ship;
-
         this.initialiseSea();
 
         document.querySelector('#sailButton').addEventListener('click', () => {
@@ -16,20 +15,24 @@ Controller.prototype = {
             './images/water1.png',
         ];
         let backgroundIndex = 0;
+
         window.setInterval(() => {
             document.querySelector('#viewport').style.backgroundImage = `url('${backgrounds[backgroundIndex % backgrounds.length]}')`;
-        backgroundIndex += 1;
-        }, 1000);
+            backgroundIndex += 1;
+    }, 1000);
     },
     renderPorts(ports) {
         const portsElement = document.querySelector('#ports');
         portsElement.style.width = '0px';
+
         ports.forEach((port, index) => {
            const newPortElement = document.createElement('div');
            newPortElement.className = 'port';
            newPortElement.dataset.portName = port.name;
            newPortElement.dataset.portIndex = index;
+
            portsElement.appendChild(newPortElement);
+
            const portsElementWidth = parseInt(portsElement.style.width, 10);
            portsElement.style.width = `${portsElementWidth + 256}px`;
         });
@@ -54,6 +57,7 @@ Controller.prototype = {
         if (!nextPortElement) {
             return alert('End of the line!');
           };
+        this.renderMessageBox(`Bye bye ${ship.currentPort.name}!`)  
 
         const shipElement = document.querySelector('#ship');
         const sailInterval = setInterval(() => {
@@ -61,11 +65,24 @@ Controller.prototype = {
             if (shipLeft === (nextPortElement.offsetLeft -32)) {
                 ship.setSail();
                 ship.dock();
+                this.renderMessageBox(`Welcome to ${ship.currentPort.name}!`)
                 clearInterval(sailInterval);
             }
 
             shipElement.style.left = `${shipLeft + 1}px`;
         }, 20);
+    },
+    renderMessageBox(message) {
+        const MessageElement = document.createElement('div');
+        const divMessage = document.querySelector('#message');
+        MessageElement.id = 'message';
+        MessageElement.innerHTML = message;
+
+        divMessage.appendChild(MessageElement);
+        
+        setTimeout(() => {
+            divMessage.removeChild(MessageElement);
+        }, 2500);
     },
 };
 if (typeof module !== 'undefined' && module.exports) {
