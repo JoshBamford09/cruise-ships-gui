@@ -74,7 +74,6 @@ Controller.prototype = {
     },
     renderMessageBox(message) {
         const messageElement = document.createElement('div');
-        const divMessage = document.querySelector('#message');
         messageElement.id = 'message';
         messageElement.innerHTML = message;
 
@@ -83,7 +82,7 @@ Controller.prototype = {
         
         setTimeout(() => {
             viewport.removeChild(messageElement);
-        }, 2500);
+        }, 5175);
     },
 };
 if (typeof module !== 'undefined' && module.exports) {
