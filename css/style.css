@@ -50,3 +50,8 @@ body {
   width: 100%;
   font-family: 'Libre Baskerville', serif;
 }
+#sailButton:focus {
+  background-color: aqua;
+  border-bottom:4px solid greenyellow;
+  padding-top: 10px;
+}
