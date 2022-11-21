@@ -55,7 +55,7 @@ Controller.prototype = {
         const nextPortElement = document.querySelector(`[data-port-index='${nextPortIndex}']`);
 
         if (!nextPortElement) {
-            return alert('End of the line!');
+            return this.renderMessageBox('You have reached the end of your journey');
           };
         this.renderMessageBox(`Bye bye ${ship.currentPort.name}!`)  
 
@@ -73,15 +73,16 @@ Controller.prototype = {
         }, 20);
     },
     renderMessageBox(message) {
-        const MessageElement = document.createElement('div');
+        const messageElement = document.createElement('div');
         const divMessage = document.querySelector('#message');
-        MessageElement.id = 'message';
-        MessageElement.innerHTML = message;
+        messageElement.id = 'message';
+        messageElement.innerHTML = message;
 
-        divMessage.appendChild(MessageElement);
+        const viewport = document.querySelector('#viewport');
+        viewport.appendChild(messageElement);
         
         setTimeout(() => {
-            divMessage.removeChild(MessageElement);
+            viewport.removeChild(messageElement);
         }, 2500);
     },
 };
